@@ -31,6 +31,25 @@ If you have any questions, please contact the AlphaFold team at
 
 ![CASP14 predictions](imgs/casp14_predictions.gif)
 
+## Deployment on EC2
+
+### Launch an EC2 instance
+
+1. On the Amazon EC2 console, choose your preferred AWS Region.
+2. Launch a new EC2 instance with Deep Learning AMI by searching Deep Learning AMI. Latest version is ok (at the time of this writing is 60.0).
+IMAGE
+3. Select a p3.2xlarge instance with one GPU as the instance type.
+IMAGE
+4. Configuring your Amazon VPC, consider using the default Amazon VPC for simplicity.
+5. Set 2 volumes as depicted in the image below.
+IMAGE
+6. Make sure that the security group settings allow you to access the EC2 instance with SSH (Port 22).
+IMAGE
+7. Launch Instance and wait for the checks to pass.
+
+
+Note: If you don’t have enough quota on a p3.2xlarge instance, you can increase the Amazon EC2 quota on your AWS account.
+
 ## First time setup
 
 The following steps are required in order to run AlphaFold:

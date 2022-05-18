@@ -189,18 +189,26 @@ class DataPipeline:
     else:
       raise ValueError('Unrecognized template input format: '
                        f'{self.template_searcher.input_format}')
-
+    # Modified by LokaFold team
+    ### ---------------------------------------------
+    logging.info("Template query starting...")
     pdb_hits_out_path = os.path.join(
         msa_output_dir, f'pdb_hits.{self.template_searcher.output_format}')
-    with open(pdb_hits_out_path, 'w') as f:
-      f.write(pdb_templates_result)
-
+    if not os.path.exists(pdb_hits_out_path):
+      with open(pdb_hits_out_path, 'w') as f:
+        f.write(pdb_templates_result)
+    logging.info("Template query finishing...")
+    ### ---------------------------------------------
     uniref90_msa = parsers.parse_stockholm(jackhmmer_uniref90_result['sto'])
     mgnify_msa = parsers.parse_stockholm(jackhmmer_mgnify_result['sto'])
 
+    # Modified by LokaFold team
+    ### ---------------------------------------------
+    logging.info("Template searching starting...")
     pdb_template_hits = self.template_searcher.get_template_hits(
         output_string=pdb_templates_result, input_sequence=input_sequence)
-
+    logging.info("Template searching finishing ...")
+    ### ---------------------------------------------
     if self._use_small_bfd:
       bfd_out_path = os.path.join(msa_output_dir, 'small_bfd_hits.sto')
       jackhmmer_small_bfd_result = run_msa_tool(
