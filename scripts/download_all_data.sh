@@ -38,7 +38,7 @@ then
 fi
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
-test_env=True
+test_env="$2"
 if [ test_env ]; then
   python "$SCRIPT_DIR/download_test_data.py"
 else
