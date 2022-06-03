@@ -90,6 +90,13 @@ flags.DEFINE_string(
     'will be owned by this user:group. By default, this is the current user. '
     'Valid options are: uid or uid:gid, non-numeric values are not recognised '
     'by Docker unless that user has been created within the container.')
+### --------------------------------------------
+### Modified by loka for testing purposes
+flags.DEFINE_boolean(
+    'test_env', False,
+    'Whether we are in a test or production environment.'
+    'If test_env=True, proper databases will not be downloaded, only the ones found in s3'
+)
 ### ---------------------------------------------
 ### Modified by AWS to add urlparse and boto3
 flags.DEFINE_string(
@@ -126,7 +133,8 @@ def _create_mount(mount_name: str, path: str) -> Tuple[types.Mount, str]:
 
 
 def main(argv):
-  if len(argv) > 1:
+    # Changed from > 1 to > 2 since we have test_env input param
+  if len(argv) > 2:
     raise app.UsageError('Too many command-line arguments.')
 
   # You can individually override the following paths if you have placed the
@@ -275,6 +283,7 @@ if __name__ == '__main__':
   flags.mark_flags_as_required([
       'data_dir',
       'fasta_paths',
-      'max_template_date',
+      'max_template_date'
+      'test_env',
   ])
   app.run(main)
