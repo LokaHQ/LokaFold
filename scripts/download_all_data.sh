@@ -40,7 +40,7 @@ fi
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 test_env=True
 if [ test_env ]; then
-  bash "$SCRIPT_DIR/download_test_data.sh" "${DOWNLOAD_DIR}"
+  python "$SCRIPT_DIR/download_test_data.py"
 else
   echo "Downloading AlphaFold parameters..."
   bash "${SCRIPT_DIR}/download_alphafold_params.sh" "${DOWNLOAD_DIR}"
