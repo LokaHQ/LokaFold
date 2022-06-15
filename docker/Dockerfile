@@ -37,7 +37,7 @@ RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh
     && mkdir /tmp/hh-suite/build \
     && pushd /tmp/hh-suite/build \
     && cmake -DCMAKE_INSTALL_PREFIX=/opt/hhsuite ..
-#    && make -j 4 && make install \
+    && make -j 4 && make install
 #    && ln -s /opt/hhsuite/bin/* /usr/bin \
 #    && popd \
 #    && rm -rf /tmp/hh-suite \
@@ -45,7 +45,7 @@ RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh
 #RUN mkdir /tmp/hh-suite/build
 #RUN pushd /tmp/hh-suite/build
 #RUN cmake -DCMAKE_INSTALL_PREFIX=/opt/hhsuite ..
-RUN make -j 4 && make install
+RUN #make -j 4 && make install
 RUN ln -s /opt/hhsuite/bin/* /usr/bin
 RUN popd
 RUN rm -rf /tmp/hh-suite
