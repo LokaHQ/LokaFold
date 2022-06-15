@@ -33,19 +33,18 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Compile HHsuite from source.
-#RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh-suite \
-
-#    && mkdir /tmp/hh-suite/build \
-#    && pushd /tmp/hh-suite/build \
-#    && cmake -DCMAKE_INSTALL_PREFIX=/opt/hhsuite .. \
+RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh-suite \
+    && mkdir /tmp/hh-suite/build \
+    && pushd /tmp/hh-suite/build \
+    && cmake -DCMAKE_INSTALL_PREFIX=/opt/hhsuite ..
 #    && make -j 4 && make install \
 #    && ln -s /opt/hhsuite/bin/* /usr/bin \
 #    && popd \
 #    && rm -rf /tmp/hh-suite \
-RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh-suite
-RUN mkdir /tmp/hh-suite/build
-RUN pushd /tmp/hh-suite/build
-RUN cmake -DCMAKE_INSTALL_PREFIX=/opt/hhsuite ..
+#RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh-suite
+#RUN mkdir /tmp/hh-suite/build
+#RUN pushd /tmp/hh-suite/build
+#RUN cmake -DCMAKE_INSTALL_PREFIX=/opt/hhsuite ..
 RUN make -j 4 && make install
 RUN ln -s /opt/hhsuite/bin/* /usr/bin
 RUN popd
