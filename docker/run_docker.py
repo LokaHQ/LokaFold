@@ -283,7 +283,7 @@ if __name__ == '__main__':
   flags.mark_flags_as_required([
       'data_dir',
       'fasta_paths',
-      'max_template_date'
+      'max_template_date',
       'test_env',
   ])
   app.run(main)
