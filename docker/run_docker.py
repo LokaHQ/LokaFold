@@ -221,10 +221,10 @@ def main(argv):
     ])
   for name, path in database_paths:
     if path:
-        print("IM HERE")
-        print(name)
-        print(path)
-        print("now im here")
+      print("IM HERE")
+      print(name)
+      print(path)
+      print("NOW IM HERE")
       mount, target_path = _create_mount(name, path)
       mounts.append(mount)
       command_args.append(f'--{name}={target_path}')
