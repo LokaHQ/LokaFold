@@ -219,15 +219,11 @@ def main(argv):
         ('uniclust30_database_path', uniclust30_database_path),
         ('bfd_database_path', bfd_database_path),
     ])
-  # for name, path in database_paths:
-  #   if path:
-  #     print("IM HERE")
-  #     print(name)
-  #     print(path)
-  #     print("NOW IM HERE")
-  #     mount, target_path = _create_mount(name, path)
-  #     mounts.append(mount)
-  #     command_args.append(f'--{name}={target_path}')
+  for name, path in database_paths:
+    if path:
+      mount, target_path = _create_mount(name, path)
+      mounts.append(mount)
+      command_args.append(f'--{name}={target_path}')
 
   output_target_path = os.path.join(_ROOT_MOUNT_DIRECTORY, 'output')
   mounts.append(types.Mount(output_target_path, FLAGS.output_dir, type='bind'))
