@@ -127,9 +127,6 @@ def _create_mount(mount_name: str, path: str) -> Tuple[types.Mount, str]:
     raise ValueError(f'Failed to find source directory "{source_path}" to '
                      'mount in Docker container.')
   logging.info('Mounting %s -> %s', source_path, target_path)
-  print(target_path)
-  print(source_path)
-  print("IM HEREEEEEEE")
   mount = types.Mount(target=str(target_path), source=str(source_path),
                       type='bind', read_only=True)
   return mount, str(mounted_path)
@@ -224,6 +221,10 @@ def main(argv):
     ])
   for name, path in database_paths:
     if path:
+        print("IM HERE")
+        print(name)
+        print(path)
+        print("now im here")
       mount, target_path = _create_mount(name, path)
       mounts.append(mount)
       command_args.append(f'--{name}={target_path}')
