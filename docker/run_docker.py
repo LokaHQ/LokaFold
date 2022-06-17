@@ -115,6 +115,7 @@ _ROOT_MOUNT_DIRECTORY = '/mnt/'
 def _create_mount(mount_name: str, path: str) -> Tuple[types.Mount, str]:
   """Create a mount point for each file and directory used by the model."""
   path = pathlib.Path(path).absolute()
+  path = path[-1]
   target_path = pathlib.Path(_ROOT_MOUNT_DIRECTORY, mount_name)
 
   if path.is_dir():
