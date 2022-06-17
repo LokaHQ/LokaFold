@@ -115,8 +115,6 @@ _ROOT_MOUNT_DIRECTORY = '/mnt/'
 def _create_mount(mount_name: str, path: str) -> Tuple[types.Mount, str]:
   """Create a mount point for each file and directory used by the model."""
   path = pathlib.Path(path).absolute()
-  print(path)
-  print("IM HERE")
   target_path = pathlib.Path(_ROOT_MOUNT_DIRECTORY, mount_name)
 
   if path.is_dir():
@@ -128,6 +126,7 @@ def _create_mount(mount_name: str, path: str) -> Tuple[types.Mount, str]:
   if not source_path.exists():
     raise ValueError(f'Failed to find source directory "{source_path}" to '
                      'mount in Docker container.')
+  print("IM HEREEEEEEE")
   logging.info('Mounting %s -> %s', source_path, target_path)
   mount = types.Mount(target=str(target_path), source=str(source_path),
                       type='bind', read_only=True)
