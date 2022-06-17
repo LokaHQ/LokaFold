@@ -126,8 +126,9 @@ def _create_mount(mount_name: str, path: str) -> Tuple[types.Mount, str]:
   if not source_path.exists():
     raise ValueError(f'Failed to find source directory "{source_path}" to '
                      'mount in Docker container.')
-  print("IM HEREEEEEEE")
   logging.info('Mounting %s -> %s', source_path, target_path)
+  print(source_path)
+  print("IM HEREEEEEEE")
   mount = types.Mount(target=str(target_path), source=str(source_path),
                       type='bind', read_only=True)
   return mount, str(mounted_path)
