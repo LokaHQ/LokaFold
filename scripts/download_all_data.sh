@@ -38,37 +38,41 @@ then
 fi
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
-
-echo "Downloading AlphaFold parameters..."
-bash "${SCRIPT_DIR}/download_alphafold_params.sh" "${DOWNLOAD_DIR}"
-
-if [[ "${DOWNLOAD_MODE}" = reduced_dbs ]] ; then
-  echo "Downloading Small BFD..."
-  bash "${SCRIPT_DIR}/download_small_bfd.sh" "${DOWNLOAD_DIR}"
+test_env="$2"
+if [ test_env ]; then
+  python "$SCRIPT_DIR/download_test_data.py"
 else
-  echo "Downloading BFD..."
-  bash "${SCRIPT_DIR}/download_bfd.sh" "${DOWNLOAD_DIR}"
-fi
+  echo "Downloading AlphaFold parameters..."
+  bash "${SCRIPT_DIR}/download_alphafold_params.sh" "${DOWNLOAD_DIR}"
 
-echo "Downloading MGnify..."
-bash "${SCRIPT_DIR}/download_mgnify.sh" "${DOWNLOAD_DIR}"
+  if [[ "${DOWNLOAD_MODE}" = reduced_dbs ]] ; then
+    echo "Downloading Small BFD..."
+    bash "${SCRIPT_DIR}/download_small_bfd.sh" "${DOWNLOAD_DIR}"
+  else
+    echo "Downloading BFD..."
+    bash "${SCRIPT_DIR}/download_bfd.sh" "${DOWNLOAD_DIR}"
+  fi
 
-echo "Downloading PDB70..."
-bash "${SCRIPT_DIR}/download_pdb70.sh" "${DOWNLOAD_DIR}"
+  echo "Downloading MGnify..."
+  bash "${SCRIPT_DIR}/download_mgnify.sh" "${DOWNLOAD_DIR}"
 
-echo "Downloading PDB mmCIF files..."
-bash "${SCRIPT_DIR}/download_pdb_mmcif.sh" "${DOWNLOAD_DIR}"
+  echo "Downloading PDB70..."
+  bash "${SCRIPT_DIR}/download_pdb70.sh" "${DOWNLOAD_DIR}"
 
-echo "Downloading Uniclust30..."
-bash "${SCRIPT_DIR}/download_uniclust30.sh" "${DOWNLOAD_DIR}"
+  echo "Downloading PDB mmCIF files..."
+  bash "${SCRIPT_DIR}/download_pdb_mmcif.sh" "${DOWNLOAD_DIR}"
 
-echo "Downloading Uniref90..."
-bash "${SCRIPT_DIR}/download_uniref90.sh" "${DOWNLOAD_DIR}"
+  echo "Downloading Uniclust30..."
+  bash "${SCRIPT_DIR}/download_uniclust30.sh" "${DOWNLOAD_DIR}"
 
-echo "Downloading UniProt..."
-bash "${SCRIPT_DIR}/download_uniprot.sh" "${DOWNLOAD_DIR}"
+  echo "Downloading Uniref90..."
+  bash "${SCRIPT_DIR}/download_uniref90.sh" "${DOWNLOAD_DIR}"
 
-echo "Downloading PDB SeqRes..."
-bash "${SCRIPT_DIR}/download_pdb_seqres.sh" "${DOWNLOAD_DIR}"
+  echo "Downloading UniProt..."
+  bash "${SCRIPT_DIR}/download_uniprot.sh" "${DOWNLOAD_DIR}"
 
-echo "All data downloaded."
+  echo "Downloading PDB SeqRes..."
+  bash "${SCRIPT_DIR}/download_pdb_seqres.sh" "${DOWNLOAD_DIR}"
+
+  echo "All data downloaded."
+  fi

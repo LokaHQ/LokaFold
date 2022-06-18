@@ -40,7 +40,8 @@ RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh
     && make -j 4 && make install \
     && ln -s /opt/hhsuite/bin/* /usr/bin \
     && popd \
-    && rm -rf /tmp/hh-suite
+    && rm -rf /tmp/hh-suite \
+
 
 # Install Miniconda package manager.
 RUN wget -q -P /tmp \
